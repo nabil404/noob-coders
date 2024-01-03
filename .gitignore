@@ -1,0 +1,12 @@
+# IDE-specific files
+/.vscode
+/.idea
+
+
+# Dependency directories
+/node_modules/
+/.venv/
+
+# Compiled Python files
+*.pyc
+__pycache__/
