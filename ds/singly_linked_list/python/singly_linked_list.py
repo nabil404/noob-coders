@@ -67,3 +67,21 @@ class LinkedList:
             response.append(current_node.data)
             current_node = current_node.next
         return response
+
+# Testing
+singly_list = LinkedList()
+singly_list.insert_head(3)
+singly_list.insert_head(8)
+singly_list.insert_head(5)
+print(singly_list.get_values())  # [5, 8, 3]
+value = singly_list.remove(2)
+print(value)  # True
+print(singly_list.get_values())  # [5, 8]
+singly_list.insert_tail(4)
+print(singly_list.get_values())  # [5, 8, 4]
+singly_list.insert_tail(69)
+print(singly_list.get_values())  # [5, 8, 4, 69]
+value = singly_list.remove(0)
+print(value)  # True 
+print(singly_list.get_values())  # [8, 4, 69]
+
