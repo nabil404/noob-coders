@@ -85,18 +85,16 @@ class LinkedList:
             current_node = current_node.next
         return False
 
-    def remove_at(self, index: int) -> bool:
+    def remove_at(self, index: int) -> int | None:
         if index < 0:
             raise ValueError("Index must be non-negative.")
         if not self.head:
-            return False
-
-        if index < 0:
-            return False
+            return None
 
         if index == 0:
+            value = self.head.data
             self.head = self.head.next
-            return True
+            return value
 
         current_node = self.head
         previous_node = None
@@ -107,10 +105,11 @@ class LinkedList:
             i += 1
 
         if not current_node:
-            return False
+            return None
 
+        value = previous_node.next.data
         previous_node.next = current_node.next
-        return True
+        return value
 
     def get(self, index: int) -> int:
         if index < 0:
@@ -122,7 +121,8 @@ class LinkedList:
                 return current_node.data
             i += 1
             current_node = current_node.next
-        return -1
+        if not current_node:
+            raise IndexError("Index out of range")
 
     def index_of(self, val: int) -> int:
         i = 0
@@ -234,6 +234,36 @@ if __name__ == "__main__":
     removed = linked_list.remove(2)
     assert removed is True
     assert linked_list.to_array() == [1]
+
+    # remove_at
+    linked_list = create_linked_list_from_array(input_list)
+    removed = linked_list.remove_at(3)
+    assert removed == 7
+    assert linked_list.to_array() == [1, 3, 4, 8]
+
+    linked_list = create_linked_list_from_array([1])
+    removed = linked_list.remove_at(3)
+    assert removed is None
+    assert linked_list.to_array() == [1]
+
+    linked_list = create_linked_list_from_array([])
+    removed = linked_list.remove_at(3)
+    assert removed is None
+    assert linked_list.to_array() == []
+
+    linked_list = create_linked_list_from_array([1, 2])
+    removed = linked_list.remove_at(1)
+    assert removed == 2
+    assert linked_list.to_array() == [1]
+
+    # get
+    linked_list = create_linked_list_from_array(input_list)
+    item = linked_list.get(3)
+    assert item == 7
+
+    linked_list = create_linked_list_from_array([1])
+    item = linked_list.get(0)
+    assert item == 1
 
     # index_of
     linked_list = create_linked_list_from_array(input_list)
