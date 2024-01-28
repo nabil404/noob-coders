@@ -8,13 +8,13 @@ class Node {
 
 class LinkedList {
     head = null;
-	pushFront (val) {
+    pushFront(val) {
         const node = new Node();
         node.val = val;
         node.next = this.head;
         this.head = node;
     }
-	pushBack (val) {
+    pushBack(val) {
         const node = new Node();
         node.val = val;
         if (this.head) {
@@ -27,7 +27,7 @@ class LinkedList {
             this.head = node;
         }
     }
-	insert(index, val) {
+    insert(index, val) {
         if (index < 0) throw new Error("Index out of bounds");
         const node = new Node();
         node.val = val;
@@ -39,9 +39,6 @@ class LinkedList {
             return
         }
         if (this.head) {
-            // 0, 1 ,2 ,3 ,4
-            // 1
-            // 0, 1 ,2 ,3 ,4, 5
             while (cursor.next !== null && pos + 1 !== index) {
                 cursor = cursor.next;
                 pos = pos + 1;
@@ -53,7 +50,7 @@ class LinkedList {
             cursor.next = node;
         }
     }
-	popFront() {
+    popFront() {
         if (this.head) {
             const returnNode = this.head;
             this.head = this.head.next;
@@ -62,7 +59,7 @@ class LinkedList {
             throw new Error("List is empty");
         }
     }
-	popBack() {
+    popBack() {
         if (this.head) {
             let cursor = this.head;
             let returnVal;
@@ -102,7 +99,7 @@ class LinkedList {
         }
         throw new Error("Value doesn't exist");
     }
-	removeAt(index) {
+    removeAt(index) {
         if (this.head && index >= 0) {
             let cursor = this.head;
             let pos = 0;
@@ -156,7 +153,7 @@ class LinkedList {
             throw new Error("Index does not exist");
         }
     }
-	toArray() {
+    toArray() {
         let cursor = this.head;
         const output = [];
         while (cursor != null) {
@@ -165,7 +162,7 @@ class LinkedList {
         }
         return output;
     }
-	get(index) {
+    get(index) {
         if (this.head && index >= 0) {
             let cursor = this.head;
             let pos = 0;
@@ -256,7 +253,7 @@ describe('LinkedList Tests', () => {
         assert.strict.deepEqual(singlyList.toArray(), [320, 110, 1220]);
     });
 
-    it('should handle indexOf operation',  () => {
+    it('should handle indexOf operation', () => {
         singlyList.pushFront(99130);
         singlyList.pushBack(13034324);
         singlyList.pushFront(132220);
